@@ -1,0 +1,45 @@
+body {
+    margin: 0px 100px 0px 100px;
+}
+
+.wel {
+    margin-left: 50px;
+}
+
+.jumbotron {
+    padding-top: 100px;
+    background-image: url('../img/doctor.jpg');
+}
+
+.checked {
+    color: orange;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    color: cornflowerblue;
+    font-weight: 600;
+}
+
+.card {
+    background-color: antiquewhite;
+}
+
+.card-textt {
+    text-align: justify;
+    padding-left: 10px;
+}
+
+.title {
+    margin-left: -80px;
+    font-weight: 700;
+}
+
+.h-search {
+    margin-top: 50px;
+}
