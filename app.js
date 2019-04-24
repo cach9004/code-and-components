@@ -35,6 +35,29 @@ const oidc = new ExpressOIDC({
   }
 });
 
+
+/**********************
+  Database Connection information
+  host: This defines the ip address of the server hosting our database.  We'll be using localhost and run our database on our local machine (i.e. can't be access via the Internet)
+  port: This defines what port we can expect to communicate to our database.  We'll use 5432 to talk with PostgreSQL
+  database: This is the name of our specific database.  From our previous lab, we created the football_db database, which holds our football data tables
+  user: This should be left as postgres, the default user account created when PostgreSQL was installed
+  password: This the password for accessing the database.  You'll need to set a password USING THE PSQL TERMINAL THIS IS NOT A PASSWORD FOR POSTGRES USER ACCOUNT IN LINUX!
+**********************/
+/*const dbConfig = {
+	host: 'localhost',
+	port: 5432,
+	database: 'doctor',
+	user: 'postgres',
+	password: 'milligan'
+};
+
+//Create Database Connection
+var pgp = require('pg-promise')();
+
+var db = pgp(dbConfig);
+*/
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -110,4 +133,103 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+/*//index after search
+app.get('/index/search__by_location', function(req, res) {
+  var location = req.query.search;
+  var states = "SELECT state FROM doctors ORDER BY ASC;";
+  var selection = "SELECT name FROM doctors WHERE state = '" + location +"';";
+  console.log("SELECT name FROM doctors WHERE state = '" + location +"';");
+  db.task('get-everything', task => {
+    return task.batch([
+        task.any(states),
+        task.any(selection)
+      ]);
+  })
+  .then(info => {
+    res.render('pages/index',{ 
+      my_title: "Homepage cont.",
+      state_list: info[0],
+      input1: location,
+      result: info[1][0]
+    })
+  })
+  .catch(error => {
+    request.flash('error', err);
+    response.render('pages/index', {
+      title: 'Homepage',
+      statelist: '',
+      input1: '',
+      result:''
+    })
+  });
+});*/
+/*
+app.get('/home/pick_color', function(req, res) {
+  var color_choice = req.query.color_selection;
+  var color_options =  'select * from favorite_colors;';
+  var color_message = "select color_msg from favorite_colors where hex_value = '" + color_choice + "';"; 
+  db.task('get-everything', task => {
+        return task.batch([
+            task.any(color_options),
+            task.any(color_message)
+        ]);
+    })
+    .then(info => {
+      res.render('pages/home',{
+        my_title: "Home Page",
+        data: info[0],
+        color: color_choice,
+        color_msg: info[1][0].color_msg
+      })
+    })
+    .catch(error => {
+        // display error message in case an error
+            request.flash('error', err);
+            response.render('pages/home', {
+                title: 'Home Page',
+                data: '',
+                color: '',
+                color_msg: ''
+            })
+    });
+  
+});
+
+
+app.post('/home/pick_color', function(req, res) {
+  var color_hex = req.body.color_hex;
+  var color_name = req.body.color_name;
+  var color_message = req.body.color_message;
+  var insert_statement = "INSERT INTO favorite_colors(hex_value, name, color_msg) VALUES('" + color_hex + "','" + 
+              color_name + "','" + color_message +"') ON CONFLICT DO NOTHING;";
+
+  var color_select = 'select * from favorite_colors;';
+  db.task('get-everything', task => {
+        return task.batch([
+            task.any(insert_statement),
+            task.any(color_select)
+        ]);
+    })
+    .then(info => {
+      res.render('pages/home',{
+        my_title: "Home Page",
+        data: info[1],
+        color: color_hex,
+        color_msg: color_message
+      })
+    })
+    .catch(error => {
+        // display error message in case an error
+            request.flash('error', err);
+            response.render('pages/home', {
+                title: 'Home Page',
+                data: '',
+                color: '',
+                color_msg: ''
+            })
+    });
+});
+
+*/
 module.exports = app;
