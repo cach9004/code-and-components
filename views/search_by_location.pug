@@ -9,7 +9,7 @@ html
       background-color: #B0E0E6;
       /*position: fixed;*/
       padding: 3px;
-      border-style: solid hidden;
+      border-style: solid hidden solid hidden;
       border-color: white;
       border-width: 3px;
       }
@@ -22,20 +22,7 @@ html
       text-align: center;
       font-size: 30px;
       line-height: 68%;
-      text-decoration: none;
-      font-family: Arial, Helvetica, sans-serif;
-      }
-      a:link, a:visited{
-      background-color: #B0E0E6;
-      color: white;
-      padding: 14px 25px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-family: Arial, Helvetica, sans-serif;
-      }
-      a:hover, a:active {
-      background-color: #d8eff0;
+      text-decoration: underline;
       }
       img {
       float: left;
@@ -52,8 +39,7 @@ html
       padding: 20px 20px;
       text-decoration: none;
       font-size: 16px;
-      text-decoration: none;
-      font-family: Arial, Helvetica, sans-serif;
+      text-decoration: underline;
       }
       div.body{
       background-color:#FFF;
@@ -68,20 +54,18 @@ html
       text-align: center;
       font-size: 30px;
       padding: 8px 0px 0px 0px;
-      text-decoration: none;
-      font-family: Arial, Helvetica, sans-serif;
+      text-decoration: underline;
       }
       .body p{
       text-align: center;
       color: #333;
       font-size: 20px;
-      font-family: Arial, Helvetica, sans-serif;
       }
       .body a{
       color: #333;
       font-size: 16px;
       padding: auto;
-      text-decoration: none;
+      text-decoration: underline;
       text-align:left;
       margin-right:310px;
       }
@@ -200,13 +184,26 @@ html
         p#my-image
           img(src='http://lotushospital.co.in/Images/Hospital/Doctor/Small/7_11_group_doctors4.png')
       h1  DoctorDetails.com 
-      a(href='/users/login') Log In/Register
-
+      a(href='/users/login') Log In
+      a(href='/registration') Sign Up
     .body
       h2 Looking for a doctor?
-      p Explore doctors in your area using our Google Map!
+      p Search Now
       .search-container
- 
+        form(action='/index/search_by_location' method = 'get')
+          input(type='text', placeholder='Search by doctor', name='search')
+          button(type='submit') Search
+        a(href='/index/search_by_location') Or try an advanced search...
+      .search-container
+        form(action='/index/search_by_location' method = 'get')
+          input(type='text', placeholder='Search by hostpital', name='search')
+          button(type='submit') Search
+        a(href='#') Or try an advanced search...
+      .search-container
+        form(action='/index/search_by_location' method = 'get')
+          input(type='text', placeholder='Search by ailment', name='search')
+          button(type='submit') Search
+        a(href='#') Or try an advanced search...
     title Geolocation
     meta(name='viewport', content='initial-scale=1.0, user-scalable=no')
     meta(charset='utf-8')
@@ -318,4 +315,4 @@ html
       'Error: Your browser doesnt support geolocation.');
       infoWindow.open(map);
       }
-script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAFrk57MQn5IqdNnK_DEfwHO-ksk-xGi4U&libraries=places&callback=initMap', async='', defer='')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyAFrk57MQn5IqdNnK_DEfwHO-ksk-xGi4U&libraries=places&callback=initMap', async='', defer='')
